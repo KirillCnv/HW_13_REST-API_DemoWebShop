@@ -1,0 +1,16 @@
+{
+  "base": {
+    "project": "examination site \"https://demowebshop.tricentis.com\"",
+    "environment": "Jenkins",
+    "comment": "examination site \"https://demowebshop.tricentis.com\"",
+    "reportLink": "https://jenkins.autotests.cloud/job/HW_11(jenkins)/8/allure/",
+    "language": "en",
+    "allureFolder": "build/reports/allure-report/allureReport",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "5799496787:AAE4haLE2mlRMK9rSnZ7r4uPwK0JOgceBDE",
+    "chat": "-1001740718033",
+    "replyTo": ""
+  }
+}

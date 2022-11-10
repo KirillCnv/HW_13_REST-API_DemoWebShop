@@ -1,0 +1,63 @@
+plugins {
+    id 'java-library'
+    id 'io.qameta.allure' version '2.10.0'
+}
+
+allure {
+    report {//секция репорта
+        version.set("2.19.0")
+    }
+    adapter { // создает папку allure-result
+        aspectjWeaver.set(true) // Обработка аннотаций
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.19.0")
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+def restAssuredVersion = "5.2.0",
+    junitVersion = "5.8.2",
+    slf4jVersion = "2.0.3",
+    json = "20220924",
+    assertj = "3.23.1",
+    selenide = "6.8.1",
+    allureSelenide = "2.19.0",
+    javaFaker = "1.0.2"
+
+
+
+
+dependencies {
+    testImplementation(
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "org.json:json:$json",
+            "org.assertj:assertj-core:$assertj",
+            "com.codeborne:selenide:$selenide",
+            "io.qameta.allure:allure-selenide:$allureSelenide",
+            "com.github.javafaker:javafaker:$javaFaker"
+    )
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+    useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
